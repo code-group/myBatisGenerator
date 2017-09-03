@@ -7,7 +7,7 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.internal.DefaultCommentGenerator;
 
 /**
- * @author: zhulili1
+ * @author: ali
  * @date: 2017/8/22
  * @description: 注释生成器
  */
@@ -19,7 +19,7 @@ public class MyCommentGenerator extends DefaultCommentGenerator {
         StringBuffer sb = new StringBuffer();
         field.addJavaDocLine("/**");
         field.addJavaDocLine(" * <pre>");
-        if(introspectedColumn.getRemarks() != null) { // 试一下，如果不判空，会显示为空
+        if(introspectedColumn.getRemarks() != null) {
             field.addJavaDocLine(" * " + introspectedColumn.getRemarks());
         }
         sb.append(" * 表字段： ");
@@ -29,7 +29,6 @@ public class MyCommentGenerator extends DefaultCommentGenerator {
         field.addJavaDocLine(sb.toString());
         field.addJavaDocLine(" * </pre>");
         field.addJavaDocLine(" * ");
-        // addJavadocTag(field, false); // ??
         field.addJavaDocLine(" */");
     }
     @Override

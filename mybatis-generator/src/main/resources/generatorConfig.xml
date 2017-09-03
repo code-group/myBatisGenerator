@@ -7,18 +7,11 @@
     <!--导入属性配置-->
     <properties resource="generator.properties"></properties>
 
-    <!--指定特定数据库的jdbc驱动jar包的位置-->
+    <!--指定jdbc驱动jar包的位置-->
     <classPathEntry location="${jdbc.driverLocation}"/>
 
     <context id="default" targetRuntime="MyBatis3">
-<!--原生注释-->
-        <!--&lt;!&ndash; optional，旨在创建class时，对注释进行控制 &ndash;&gt;-->
-        <!--<commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator">-->
-            <!--&lt;!&ndash; 定义是否生成原生注释，我们这里自定义了，所以选择false &ndash;&gt;-->
-            <!--<property name="suppressAllComments" value="false"/>-->
-            <!--&lt;!&ndash; This property is used to specify whether MBG will include the generation timestamp in the generated comments &ndash;&gt;-->
-            <!--<property name="suppressDate" value="true"/>-->
-        <!--</commentGenerator>-->
+
         <commentGenerator type="org.mybatis.generator.MyCommentGenerator">
             <!-- 定义是否生成原生注释，我们这里自定义了，所以选择false -->
             <property name="suppressAllComments" value="false"/>
@@ -31,7 +24,7 @@
         <jdbcConnection
                 driverClass="${jdbc.driverClass}"
                 connectionURL="${jdbc.connectionURL}"
-                userId="${jdbc.userId}"
+                userId="${jdbc.user}"
                 password="${jdbc.password}">
         </jdbcConnection>
 
@@ -46,7 +39,7 @@
             targetPackage     指定生成的model生成所在的包名
             targetProject     指定在该项目下所在的路径
         -->
-        <javaModelGenerator targetPackage="com.leFinance.creditLoan.mercury.domain"
+        <javaModelGenerator targetPackage="com.me.domain"
                             targetProject="src/main/java">
 
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
@@ -60,7 +53,7 @@
         </javaModelGenerator>
 
         <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
-        <sqlMapGenerator targetPackage="mybatis/mercury"
+        <sqlMapGenerator targetPackage="mybatis"
                          targetProject="src/main/resources">
         </sqlMapGenerator>
 
@@ -69,19 +62,17 @@
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-        <javaClientGenerator targetPackage="com.leFinance.creditLoan.mercury.dao"
+        <javaClientGenerator targetPackage="com.me.dao"
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="ACCT_REPAYMENT_IN_ACCOUNT_RECORD" schema="general" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="USER" schema="general" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="false"/>
             <property name="selectAllOrderByClause" value=""/>
         </table>
-
-
 
     </context>
 </generatorConfiguration>
