@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96d24c93-1fe3-4f0c-aeda-aa4a2db0ab09" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_14.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/leFinance/creditLoan/mercury/dao/AcctRepaymentInAccountRecordMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/leFinance/creditLoan/mercury/domain/AcctRepaymentInAccountRecord.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mybatis-generator/src/main/java/com/leFinance/creditLoan/mercury/domain/AcctRepaymentInAccountRecordWithBLOBs.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/mybatis/mercury/AcctRepaymentInAccountRecordMapper.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comment-generator/target/classes/org/mybatis/generator/MyCommentGenerator.class" afterPath="$PROJECT_DIR$/comment-generator/target/classes/org/mybatis/generator/MyCommentGenerator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comment-generator/target/mybatis-generator-core-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/comment-generator/target/mybatis-generator-core-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comment-generator/comment-generator.iml" afterPath="$PROJECT_DIR$/comment-generator/comment-generator.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comment-generator/pom.xml" afterPath="$PROJECT_DIR$/comment-generator/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comment-generator/src/main/java/org.mybatis.generator/MyCommentGenerator.java" afterPath="$PROJECT_DIR$/comment-generator/src/main/java/org.mybatis.generator/MyCommentGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/generator.properties" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/generator.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mybatis-generator/src/main/resources/generatorConfig.xml" afterPath="$PROJECT_DIR$/mybatis-generator/src/main/resources/generatorConfig.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,7 +42,7 @@
       <file leaf-file-name="generatorConfig.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mybatis-generator/src/main/resources/generatorConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
+            <state relative-caret-position="935">
               <caret line="55" column="47" lean-forward="false" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
               <folding />
             </state>
@@ -61,10 +52,36 @@
       <file leaf-file-name="MyCommentGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/comment-generator/src/main/java/org.mybatis.generator/MyCommentGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
+            <state relative-caret-position="256">
               <caret line="21" column="53" lean-forward="false" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mybatis-generator/src/main/java/com/me/dao/UserMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mybatis-generator/src/main/resources/mybatis/UserMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1504440295000" expanded="true" signature="1052:1161" ph="select from USER" />
+                <marker date="1504440295000" expanded="true" signature="1378:1441" ph="delete from " />
+                <marker date="1504440295000" expanded="true" signature="1647:1815" ph="insert into USER... " />
+                <marker date="1504440295000" expanded="true" signature="2875:3160" ph="update USER " />
+                <marker date="1504440295000" expanded="true" signature="3378:3539" ph="update USER " />
               </folding>
             </state>
           </provider>
@@ -515,16 +532,23 @@
       <workItem from="1504147174622" duration="377000" />
       <workItem from="1504426418452" duration="50000" />
       <workItem from="1504426505665" duration="3268000" />
-      <workItem from="1504432201296" duration="2595000" />
+      <workItem from="1504432201296" duration="2914000" />
     </task>
+    <task id="LOCAL-00001" summary="更新代码">
+      <created>1504440397783</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1504440397783</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22948000" />
+    <option name="totallyTimeSpent" value="23267000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -536,11 +560,11 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20208333" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="1224" y="31" width="214" height="850" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21529412" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14352942" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14869282" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24305555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24305555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -563,27 +587,15 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="更新代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新代码" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mybatis-generator/src/main/resources/generator.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mybatis-generator/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
@@ -840,7 +852,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mybatis-generator/src/main/resources/generatorConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
+        <state relative-caret-position="935">
           <caret line="55" column="47" lean-forward="false" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
           <folding />
         </state>
@@ -848,10 +860,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/comment-generator/src/main/java/org.mybatis.generator/MyCommentGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
+        <state relative-caret-position="256">
           <caret line="21" column="53" lean-forward="false" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mybatis-generator/src/main/java/com/me/dao/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mybatis-generator/src/main/resources/mybatis/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1504440295000" expanded="true" signature="1052:1161" ph="select from USER" />
+            <marker date="1504440295000" expanded="true" signature="1378:1441" ph="delete from " />
+            <marker date="1504440295000" expanded="true" signature="1647:1815" ph="insert into USER... " />
+            <marker date="1504440295000" expanded="true" signature="2875:3160" ph="update USER " />
+            <marker date="1504440295000" expanded="true" signature="3378:3539" ph="update USER " />
           </folding>
         </state>
       </provider>
