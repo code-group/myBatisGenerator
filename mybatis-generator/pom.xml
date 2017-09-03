@@ -11,7 +11,13 @@
 
     <artifactId>mybatis-generator</artifactId>
     <name>mybatis-generator</name>
-
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.14</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <!-- mybatis代码生成插件 -->

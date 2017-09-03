@@ -11,14 +11,12 @@
     <classPathEntry location="${jdbc.driverLocation}"/>
 
     <context id="default" targetRuntime="MyBatis3">
-
         <commentGenerator type="org.mybatis.generator.MyCommentGenerator">
-            <!-- 定义是否生成原生注释，我们这里自定义了，所以选择false -->
+            <!-- 定义是否生成原生注释，选择false -->
             <property name="suppressAllComments" value="false"/>
-            <!-- This property is used to specify whether MBG will include the generation timestamp in the generated comments -->
+
             <property name="suppressDate" value="true"/>
         </commentGenerator>
-
 
         <!--jdbc的数据库连接 -->
         <jdbcConnection
@@ -28,51 +26,35 @@
                 password="${jdbc.password}">
         </jdbcConnection>
 
-
         <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-
-        <!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
-            targetPackage     指定生成的model生成所在的包名
-            targetProject     指定在该项目下所在的路径
-        -->
-        <javaModelGenerator targetPackage="com.me.domain"
-                            targetProject="src/main/java">
-
-            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+        <!-- Model模型生成器：targetPackage-指定生成的model保存的包名；targetProject-指定路径 -->
+        <javaModelGenerator targetPackage="com.me.domain" targetProject="src/main/java">
+            <!-- 是否允许生成子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false"/>
-            <!-- 是否对model添加 构造函数 -->
+            <!-- 是否对model添加构造函数 -->
             <property name="constructorBased" value="false"/>
-            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+            <!-- 是否对类VARCHAR类型的数据进行trim操作 -->
             <property name="trimStrings" value="true"/>
-            <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
+            <!-- Model对象是否可改变，即生成的对象会不会有setter方法 -->
             <property name="immutable" value="false"/>
         </javaModelGenerator>
 
-        <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
-        <sqlMapGenerator targetPackage="mybatis"
-                         targetProject="src/main/resources">
+        <!-- 生成Mapper.xml映射文件所在的目录 -->
+        <sqlMapGenerator targetPackage="mybatis" targetProject="src/main/resources">
         </sqlMapGenerator>
 
-        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
-                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
-                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
-                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
-        -->
-        <javaClientGenerator targetPackage="com.me.dao"
-                             targetProject="src/main/java" type="XMLMAPPER">
+        <javaClientGenerator targetPackage="com.me.dao" targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <table tableName="USER" schema="general" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="false"/>
             <property name="selectAllOrderByClause" value=""/>
         </table>
-
     </context>
 </generatorConfiguration>
