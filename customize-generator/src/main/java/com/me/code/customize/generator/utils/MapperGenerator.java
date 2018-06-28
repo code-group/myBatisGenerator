@@ -229,7 +229,7 @@ public class MapperGenerator {
                 .replace("$key", priColumn.getProperty()));
         content.add(CommonUtil.getNTab(2) + "insert into " + tableName);
         content.add(CommonUtil.getNTab(2) + "(" + CommonUtil.SPACE4 + "<include refid=\"" + COLUMNS_FOR_INSERT + "\"/>" + CommonUtil.SPACE4 + ")");
-        content.add(CommonUtil.getNTab(2) + "values(");
+        content.add(CommonUtil.getNTab(2) + "values");
         content.add(CommonUtil.getNTab(2) + "<foreach collection=\"list\" item=\"item\" separator=\",\" >");
         content.add(CommonUtil.getNTab(3) + "(");
         listProperty(content, 4);
@@ -245,17 +245,18 @@ public class MapperGenerator {
      * @param tabNum
      */
     private static void listProperty(List<String> content, int tabNum) {
+        String item = tabNum == 3 ? "" : "item.";
         StringBuilder sb = new StringBuilder(CommonUtil.getNTab(tabNum));
         int lastIndex = ordinaryColumns.size() - 1;
         for (int i = 0; i < lastIndex; ++i) {
-            String temp = COLUMN.replace("$property", "item." + ordinaryColumns.get(i).getProperty())
+            String temp = COLUMN.replace("$property", item + ordinaryColumns.get(i).getProperty())
                     .replace("$jdbcType", ordinaryColumns.get(i).getType().mybatis) + ", ";
             sb = getNewLine(content, tabNum, sb, temp);
             sb.append(temp);
         }
         if (ordinaryColumns.size() > 0) {
             String temp = COLUMN.replace("$property",
-                    "item." + ordinaryColumns.get(lastIndex).getProperty())
+                    item + ordinaryColumns.get(lastIndex).getProperty())
                     .replace("$jdbcType", ordinaryColumns.get(lastIndex).getType().mybatis);
             sb = getNewLine(content, tabNum, sb, temp);
             sb.append(temp);
