@@ -18,6 +18,7 @@ public class MapperGenerator {
     private static String RESULT_MAP = "<$result column=\"$column\" property=\"$property\" jdbcType=\"$jdbcType\"/>";
     private static String INSERT = "<insert id=\"$id\" parameterType=\"$parameterType\" useGeneratedKeys=\"true\" keyProperty=\"$key\">";
     private static String SELECT = "<select id=\"$id\" parameterType=\"$parameterType\" resultMap=\"$resultMap\">";
+    private static String SELECT_COUNT = "<select id=\"$id\" parameterType=\"$parameterType\" resultType=\"java.lang.Integer\">";
     private static String BASE_COLUMNS = "Base_Columns";
     private static String COLUMNS_FOR_INSERT = "Columns_For_Insert";
     private static String COLUMN = "#{$property, jdbcType=$jdbcType}";
@@ -83,9 +84,8 @@ public class MapperGenerator {
     private static void addCount(String parameterType, TableInfo tableInfo, List<String> content) {
         content.add("");
         content.add(CommonUtil.SPACE4 + "<!-- 统计数量 -->");
-        content.add(CommonUtil.SPACE4 + SELECT.replace("$id", "count")
-                .replace("$parameterType", parameterType)
-                .replace("$resultMap", tableInfo.getObjectName()));
+        content.add(CommonUtil.SPACE4 + SELECT_COUNT.replace("$id", "count")
+                .replace("$parameterType", parameterType));
         content.add(CommonUtil.getNTab(2) + "select count(*)");
         selectFromWhere(tableInfo, content);
     }
