@@ -69,6 +69,7 @@ public class MapperGenerator {
             addUpdateByPrimaryKey(parameterType, tableInfo.getTableName(), content);
             addQueryByPrimaryKey(tableInfo, content);
         }
+        addQueryOne(parameterType, tableInfo, content);
         addQueryList(parameterType, tableInfo, content);
         addCount(parameterType, tableInfo, content);
         content.add("</mapper>");
@@ -91,6 +92,24 @@ public class MapperGenerator {
     }
 
     /**
+     * 添加根据条件查询一条列表方法
+     *
+     * @param parameterType
+     * @param tableInfo
+     * @param content
+     */
+    private static void addQueryOne(String parameterType, TableInfo tableInfo, List<String> content) {
+        content.add("");
+        content.add(CommonUtil.SPACE4 + "<!-- 根据条件查询一条记录 -->");
+        content.add(CommonUtil.SPACE4 +
+                SELECT.replace("$id", "queryOne")
+                        .replace("$parameterType", parameterType)
+                        .replace("$resultMap", tableInfo.getObjectName()));
+        content.add(CommonUtil.getNTab(2) + "select <include refid=\"" + BASE_COLUMNS + "\"/>");
+        selectFromWhere(tableInfo, content);
+    }
+
+    /**
      * 添加根据条件查询列表方法
      *
      * @param parameterType
@@ -99,7 +118,7 @@ public class MapperGenerator {
      */
     private static void addQueryList(String parameterType, TableInfo tableInfo, List<String> content) {
         content.add("");
-        content.add(CommonUtil.SPACE4 + "<!-- 根据主键查询 -->");
+        content.add(CommonUtil.SPACE4 + "<!-- 根据条件查询列表 -->");
         content.add(CommonUtil.SPACE4 +
                 SELECT.replace("$id", "queryList")
                         .replace("$parameterType", parameterType)

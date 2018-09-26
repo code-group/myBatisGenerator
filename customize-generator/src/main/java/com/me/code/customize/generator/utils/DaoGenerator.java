@@ -52,6 +52,7 @@ public class DaoGenerator extends BaseGenerator {
             addUpdateByPrimaryKey(className, content);
             addQueryByPrimaryKey(priColumn, className, content);
         }
+        addQueryOne(className, content);
         addQueryList(className, content);
         addCount(className, content);
 
@@ -137,6 +138,23 @@ public class DaoGenerator extends BaseGenerator {
         content.add(CommonUtil.SPACE4 + " */");
         content.add(CommonUtil.SPACE4 + domainClassName + " queryByPrimaryKey(" + primaryColumn.getType().java + " " +
                 primaryColumn.getProperty() + ");");
+    }
+
+    /**
+     * 增加query方法，根据查询条件查询一条记录.
+     *
+     * @param domainClassName domain类名
+     * @param content         输出文件内容
+     */
+    private static void addQueryOne(final String domainClassName, final List<String> content) {
+        content.add("");
+        content.add(CommonUtil.SPACE4 + "/**");
+        content.add(CommonUtil.SPACE4 + " * 根据条件查询一条记录");
+        content.add(CommonUtil.SPACE4 + " * ");
+        content.add(CommonUtil.SPACE4 + " * @param condition 查询条件");
+        content.add(CommonUtil.SPACE4 + " * @return 查询出来的对象");
+        content.add(CommonUtil.SPACE4 + " */");
+        content.add(CommonUtil.SPACE4 + domainClassName + " queryOne(" + domainClassName + " condition);");
     }
 
     /**
