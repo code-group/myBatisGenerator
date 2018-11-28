@@ -43,7 +43,7 @@ public class DomainGenerator extends BaseGenerator {
             content.add("");
             content.add(CommonUtil.SPACE4 + "/**");
             content.add(CommonUtil.SPACE4 + " * " + columnInfo.getComment());
-            content.add(CommonUtil.SPACE4 + " */ ");
+            content.add(CommonUtil.SPACE4 + " */");
             content.add(CommonUtil.SPACE4 + "private " + columnInfo.getType().java + " " + columnInfo.getProperty() + ";");
         }
         content.add("}");
@@ -69,7 +69,7 @@ public class DomainGenerator extends BaseGenerator {
         content.add(" * ");
         content.add(" * @author " + AUTHOR);
         content.add(" * @date " + FastDateFormat.getInstance("yyyy/MM/dd").format(new Date()));
-        content.add(" */ ");
+        content.add(" */");
     }
 
     /**
@@ -84,6 +84,8 @@ public class DomainGenerator extends BaseGenerator {
         boolean importBlob = false;
         boolean importClob = false;
         boolean importDate = false;
+        boolean importLocalDate = false;
+        boolean importLocalDateTime = false;
         boolean importBigDecimal = false;
 
         for (ColumnInfo columnInfo : tableInfo.getColumnInfos()) {
@@ -96,8 +98,14 @@ public class DomainGenerator extends BaseGenerator {
                     case CLOB:
                         importClob = importPackage(content, importClob, java2Mysql);
                         break;
-                    case DATE:
-                        importDate = importPackage(content, importDate, java2Mysql);
+//                    case DATE:
+//                        importDate = importPackage(content, importDate, java2Mysql);
+//                        break;
+                    case LOCAL_DATE:
+                        importLocalDate = importPackage(content, importLocalDate, java2Mysql);
+                        break;
+                    case LOCAL_DATE_TIME:
+                        importLocalDateTime = importPackage(content, importLocalDateTime, java2Mysql);
                         break;
                     case BIG_DECIMAL:
                         importBigDecimal = importPackage(content, importBigDecimal, java2Mysql);

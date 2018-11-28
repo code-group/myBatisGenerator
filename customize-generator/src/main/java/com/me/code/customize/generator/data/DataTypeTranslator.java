@@ -10,27 +10,35 @@ import java.util.List;
  */
 public class DataTypeTranslator {
 
-    private static String DATE_PACKAGE = "java.sql.Date";
+    private static String DATE_PACKAGE = "java.util.Date";
+    private static String LOCAL_DATE_PACKAGE = "java.time.LocalDate";
+    private static String LOCAL_DATE_TIME_PACKAGE = "java.time.LocalDateTime";
     private static String BIG_DECIMAL_PACKAGE = "java.math.BigDecimal";
     private static String BLOB_PACKAGE = "java.sql.Blob";
     private static String CLOB_PACKAGE = "java.sql.Clob";
 
     public enum Java2Mysql {
-        DATE(new ArrayList<DataType>() {{
-                add(DataType.DATE);
-                add(DataType.DATETIME);
-                add(DataType.TIMESTAMP);
-            }}, DATE_PACKAGE),
+        //        DATE(new ArrayList<DataType>() {{
+//                add(DataType.DATE);
+//                add(DataType.DATETIME);
+//                add(DataType.TIMESTAMP);
+//            }}, DATE_PACKAGE),
+        LOCAL_DATE(new ArrayList<DataType>() {{
+            add(DataType.DATE_4LD);
+        }}, LOCAL_DATE_PACKAGE),
+        LOCAL_DATE_TIME(new ArrayList<DataType>() {{
+            add(DataType.DATETIME_4LD);
+        }}, LOCAL_DATE_TIME_PACKAGE),
         BIG_DECIMAL(new ArrayList<DataType>() {{
-                add(DataType.NUMERIC);
-                add(DataType.DECIMAL);
-            }}, BIG_DECIMAL_PACKAGE),
+            add(DataType.NUMERIC);
+            add(DataType.DECIMAL);
+        }}, BIG_DECIMAL_PACKAGE),
         BLOB(new ArrayList<DataType>() {{
-                add(DataType.BLOB);
-            }}, BLOB_PACKAGE),
+            add(DataType.BLOB);
+        }}, BLOB_PACKAGE),
         CLOB(new ArrayList<DataType>() {{
-                add(DataType.CLOB);
-            }}, CLOB_PACKAGE),
+            add(DataType.CLOB);
+        }}, CLOB_PACKAGE),
         ;
 
         public List<DataType> dataTypes;
@@ -69,11 +77,16 @@ public class DataTypeTranslator {
         LONGBLOB("LONGBLOB", "BLOB", "Byte[]", "java.lang.Byte", false),
         BLOB("BLOB", "BLOB", "Blob", BLOB_PACKAGE, true),
         CLOB("CLOB", "CLOB", "Clob", CLOB_PACKAGE, true),
-        DATE("DATE", "DATE", "Date", DATE_PACKAGE, true),
         NUMERIC("NUMERIC", "NUMERIC", "BigDecimal", BIG_DECIMAL_PACKAGE, true),
         DECIMAL("DECIMAL", "DECIMAL", "BigDecimal", BIG_DECIMAL_PACKAGE, true),
-        DATETIME("DATETIME", "TIMESTAMP", "Date", DATE_PACKAGE, true),
-        TIMESTAMP("TIMESTAMP", "TIMESTAMP", "Date", DATE_PACKAGE, true),
+
+//        DATE("DATE", "DATE", "Date", DATE_PACKAGE, true),
+//        DATETIME("DATETIME", "TIMESTAMP", "Date", DATE_PACKAGE, true),
+//        TIMESTAMP("TIMESTAMP", "TIMESTAMP", "Date", DATE_PACKAGE, true),
+
+        DATE_4LD("DATE", "DATE", "LocalDate", LOCAL_DATE_PACKAGE, true),
+        DATETIME_4LD("DATETIME", "TIMESTAMP", "LocalDateTime", LOCAL_DATE_TIME_PACKAGE, true),
+        TIMESTAMP_4LD("TIMESTAMP", "TIMESTAMP", "LocalDateTime", LOCAL_DATE_TIME_PACKAGE, true),
         ;
 
         public String mysql;
