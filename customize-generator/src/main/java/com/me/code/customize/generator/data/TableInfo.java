@@ -39,6 +39,11 @@ public class TableInfo {
      */
     private List<ColumnInfo> columnInfos;
 
+    /**
+     * 唯一索引列属性
+     */
+    private List<ColumnInfo> uniqueColumnInfos;
+
     public void setClassName() {
         this.className = CommonUtil.toHump(this.tableName);
     }

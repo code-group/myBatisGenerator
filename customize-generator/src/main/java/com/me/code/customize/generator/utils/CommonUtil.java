@@ -44,6 +44,18 @@ public class CommonUtil {
     }
 
     /**
+     * 将首字母变为大写
+     * @param name
+     * @return
+     */
+    public static String toUpperHead(String name) {
+        if (StringUtils.isEmpty(name)) {
+            return name;
+        }
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
+
+    /**
      * 首字母小写.
      *
      * @param oriStr 原字符串

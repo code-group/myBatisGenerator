@@ -2,6 +2,7 @@ package com.me.code.customize.generator;
 
 import com.me.code.customize.generator.data.ConfigInfo;
 import com.me.code.customize.generator.data.TableInfo;
+import com.me.code.customize.generator.data.bo.TableReqBo;
 import com.me.code.customize.generator.jdbc.DbUtil;
 import com.me.code.customize.generator.jdbc.SchemaUtil;
 import com.me.code.customize.generator.utils.BaseGenerator;
@@ -26,8 +27,13 @@ public class MybatisGenerator {
         // 生成数据库中所有的表对应的dao文件
 //        List<TableInfo> tableInfos = SchemaUtil.getTableInfos("test_db", null);
         // 生成数据库中指定表对应的dao文件
-        List<TableInfo> tableInfos = SchemaUtil.getTableInfos("test_db", new ArrayList<String>(){{add("USER");add("ORDER_INFO");}});
+        List<TableReqBo> tableReqBos = new ArrayList<>();
+        TableReqBo reqBo1 = new TableReqBo();
+        reqBo1.setTableName("USER");
+        reqBo1.setUniqueKeys(new ArrayList<String>(){{add("NAME");}});
+        tableReqBos.add(reqBo1);
 
+        List<TableInfo> tableInfos = SchemaUtil.getTableInfos("test_db", tableReqBos);
         ConfigInfo configInfo = new ConfigInfo();
         configInfo.setModulePackagePath("com.me.test.dao");
         configInfo.setDomainPackageName("domain");

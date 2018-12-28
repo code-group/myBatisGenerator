@@ -52,6 +52,11 @@ public class DaoGenerator extends BaseGenerator {
             addUpdateByPrimaryKey(className, content);
             addQueryByPrimaryKey(priColumn, className, content);
         }
+        if (tableInfo.getUniqueColumnInfos() != null) {
+            for (ColumnInfo columnInfo : tableInfo.getUniqueColumnInfos()) {
+                addQueryByUnique(columnInfo, className, content);
+            }
+        }
         addQueryOne(className, content);
         addQueryList(className, content);
         addCount(className, content);
@@ -138,6 +143,25 @@ public class DaoGenerator extends BaseGenerator {
         content.add(CommonUtil.SPACE4 + " */");
         content.add(CommonUtil.SPACE4 + domainClassName + " queryByPrimaryKey(" + primaryColumn.getType().java + " " +
                 primaryColumn.getProperty() + ");");
+    }
+
+    /**
+     * 根据唯一索引查询方法.
+     *
+     * @param columnInfo      列信息
+     * @param domainClassName domain类名
+     * @param content         输出文件内容
+     */
+    private static void addQueryByUnique(final ColumnInfo columnInfo, final String domainClassName, final List<String> content) {
+        content.add("");
+        content.add(CommonUtil.SPACE4 + "/**");
+        content.add(CommonUtil.SPACE4 + " * 根据" + columnInfo.getComment() + "查询");
+        content.add(CommonUtil.SPACE4 + " * ");
+        content.add(CommonUtil.SPACE4 + " * @param " + columnInfo.getProperty() + " " + columnInfo.getComment());
+        content.add(CommonUtil.SPACE4 + " * @return 查询到的对象");
+        content.add(CommonUtil.SPACE4 + " */");
+        content.add(CommonUtil.SPACE4 + domainClassName + " queryBy" + CommonUtil.toUpperHead(columnInfo.getProperty())
+                + "(" + columnInfo.getType().java + " " + columnInfo.getProperty() + ");");
     }
 
     /**

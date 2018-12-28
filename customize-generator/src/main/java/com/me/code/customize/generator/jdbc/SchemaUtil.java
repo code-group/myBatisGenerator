@@ -2,12 +2,16 @@ package com.me.code.customize.generator.jdbc;
 
 import com.me.code.customize.generator.data.ColumnInfo;
 import com.me.code.customize.generator.data.TableInfo;
+import com.me.code.customize.generator.data.bo.TableReqBo;
 import org.apache.commons.lang3.StringUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author zhull
@@ -32,26 +36,31 @@ public class SchemaUtil {
      * 如tableNames为空，则查询tableSchema所有表
      *
      * @param tableSchema
-     * @param tableNames  表名列表
+     * @param tableReqBos  表名列表
      * @return
      */
-    public static List<TableInfo> getTableInfos(String tableSchema, List<String> tableNames) throws SQLException {
+    public static List<TableInfo> getTableInfos(String tableSchema, List<TableReqBo> tableReqBos) throws SQLException {
         if (StringUtils.isEmpty(tableSchema)) {
             return null;
         }
+
+        Map<String, TableReqBo> tableNameReqBoMap = null;
         List<TableInfo> tableInfos = new ArrayList<>();
-        if (tableNames == null || tableNames.size() == 0) {
+        if (tableReqBos == null || tableReqBos.size() == 0) {
             getTableInfos(tableInfos,
                     DbUtil.executeQuery(TABLE_TEMPLATE.replace("$tableSchema", tableSchema)));
         } else {
             StringBuilder sb = new StringBuilder();
-            for(int i = 0; i < tableNames.size()-1; ++i) {
-                sb.append("'").append(tableNames.get(i)).append("'").append(",");
+            for(int i = 0; i < tableReqBos.size()-1; ++i) {
+                sb.append("'").append(tableReqBos.get(i).getTableName()).append("'").append(",");
             }
-            sb.append("'").append(tableNames.get(tableNames.size()-1)).append("'");
+            sb.append("'").append(tableReqBos.get(tableReqBos.size()-1).getTableName()).append("'");
             getTableInfos(tableInfos, DbUtil.executeQuery(
                     SOME_TABLE_TEMPLATE.replace("$tableSchema", tableSchema).replace("$tableName", sb)));
+
+            tableNameReqBoMap = tableReqBos.stream().collect(Collectors.toMap(TableReqBo::getTableName, Function.identity()));
         }
+
         System.out.print("即将处理" + tableInfos.size() + "张表\t");
         for (TableInfo tableInfo : tableInfos) {
             System.out.print(tableInfo.getTableName() + "; ");
@@ -60,7 +69,9 @@ public class SchemaUtil {
             if (resultSet == null) {
                 continue;
             }
+
             List<ColumnInfo> columnInfos = new ArrayList<>();
+            List<ColumnInfo> uniqueColumnInfos = new ArrayList<>();
             while (resultSet.next()) {
                 ColumnInfo columnInfo = new ColumnInfo();
                 columnInfo.setColumnName(resultSet.getString(1));
@@ -70,9 +81,19 @@ public class SchemaUtil {
                 columnInfo.setProperty();
                 columnInfo.setType();
                 columnInfos.add(columnInfo);
+
+                if (tableNameReqBoMap != null) {
+                    TableReqBo tableReqBo = tableNameReqBoMap.get(tableInfo.getTableName());
+                    if (tableReqBo != null && tableReqBo.getUniqueKeys() != null &&
+                            tableReqBo.getUniqueKeys().contains(columnInfo.getColumnName())) {
+                        uniqueColumnInfos.add(columnInfo);
+                    }
+                }
             }
             tableInfo.setColumnInfos(columnInfos);
+            tableInfo.setUniqueColumnInfos(uniqueColumnInfos);
         }
+
         System.out.println();
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         return tableInfos;

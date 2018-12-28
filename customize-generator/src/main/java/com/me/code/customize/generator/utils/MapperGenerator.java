@@ -69,6 +69,11 @@ public class MapperGenerator {
             addUpdateByPrimaryKey(parameterType, tableInfo.getTableName(), content);
             addQueryByPrimaryKey(tableInfo, content);
         }
+        if (tableInfo.getUniqueColumnInfos() != null) {
+            for (ColumnInfo columnInfo : tableInfo.getUniqueColumnInfos()) {
+                addQueryByUnique(tableInfo, columnInfo, content);
+            }
+        }
         addQueryOne(parameterType, tableInfo, content);
         addQueryList(parameterType, tableInfo, content);
         addCount(parameterType, tableInfo, content);
@@ -192,6 +197,28 @@ public class MapperGenerator {
         content.add(CommonUtil.getNTab(2) + "where `" + priColumn.getColumnName() + "` = " +
                 COLUMN.replace("$property", priColumn.getProperty())
                         .replace("$jdbcType", priColumn.getType().mybatis));
+        content.add(CommonUtil.SPACE4 + "</select>");
+    }
+
+    /**
+     * 添加根据唯一索引查询方法
+     *
+     * @param tableInfo
+     * @param columnInfo
+     * @param content
+     */
+    private static void addQueryByUnique(TableInfo tableInfo, ColumnInfo columnInfo, List<String> content) {
+        content.add("");
+        content.add(CommonUtil.SPACE4 + "<!-- 根据" + columnInfo.getComment() + "查询 -->");
+        content.add(CommonUtil.SPACE4 +
+                SELECT.replace("$id", "queryBy" + CommonUtil.toUpperHead(columnInfo.getProperty()))
+                        .replace("$parameterType", columnInfo.getType().packageNeed)
+                        .replace("$resultMap", tableInfo.getObjectName()));
+        content.add(CommonUtil.getNTab(2) + "select <include refid=\"" + BASE_COLUMNS + "\"/>");
+        content.add(CommonUtil.getNTab(2) + "from " + tableInfo.getTableName());
+        content.add(CommonUtil.getNTab(2) + "where `" + columnInfo.getColumnName() + "` = " +
+                COLUMN.replace("$property", columnInfo.getProperty())
+                        .replace("$jdbcType", columnInfo.getType().mybatis));
         content.add(CommonUtil.SPACE4 + "</select>");
     }
 
